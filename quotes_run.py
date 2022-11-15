@@ -1,3 +1,5 @@
+# Author Megha Shroff
+
 import requests
 from bs4 import BeautifulSoup
 from lxml import etree
@@ -25,24 +27,21 @@ data = requests.get(url)
 
 html = BeautifulSoup(data.text, 'html.parser')
 
-print(html)
-
 documentObjectModel = etree.HTML(str(html))
 quotes = documentObjectModel.xpath('//*[@id="h-short-inspirational-quotes-about-happiness"]/following-sibling::p')
 
-# while True:
-#     for q in quotes:
-#         text = q.text
-#         try :
-#             quote = re.findall("\“(.*?)\”", text)
-#             ran_num = random.randint(0, len(quotes)-1)
-#             # print(ran_num)
-#             notification_fun(quote[ran_num])
-#             for i in range(3600):
-#                 time.sleep(1)
+while True:
+    for q in quotes:
+        text = q.text
+        try :
+            quote = re.findall("\“(.*?)\”", text)
+            ran_num = random.randint(0, len(quotes)-1)
+            # print(ran_num)
+            notification_fun(quote[ran_num])
+            for i in range(3600):
+                time.sleep(1)
 
-#         except Exception as e :
-#             # print(e)
-#             pass
-#         # print(quote[0])
+        except Exception as e :
+            # print(e)
+            pass
     
